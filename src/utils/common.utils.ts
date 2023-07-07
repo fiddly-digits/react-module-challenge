@@ -63,3 +63,69 @@ export const otherItems = [
     icon: '../terms-icon.svg'
   }
 ];
+
+export const popularHashtags = [
+  {
+    name: '#webdev'
+  },
+  {
+    name: '#javascript'
+  },
+  {
+    name: '#beginners'
+  },
+  {
+    name: '#tutorial'
+  },
+  {
+    name: '#programming'
+  },
+  {
+    name: '#react'
+  },
+  {
+    name: '#phyton'
+  },
+  {
+    name: '#aws'
+  },
+  {
+    name: '#devops'
+  },
+  {
+    name: '#discuss'
+  },
+  {
+    name: '#opensource'
+  },
+  {
+    name: '#typescript'
+  },
+  {
+    name: '#tailwind'
+  },
+  {
+    name: '#github'
+  },
+  {
+    name: '#node'
+  },
+  {
+    name: '#career'
+  },
+  {
+    name: '#database'
+  },
+  {
+    name: '#api'
+  },
+  {
+    name: '#swift'
+  },
+  {
+    name: '#security'
+  },
+  {
+    name: '#mongo'
+  }
+];
