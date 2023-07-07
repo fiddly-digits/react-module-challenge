@@ -129,3 +129,53 @@ export const popularHashtags = [
     name: '#mongo'
   }
 ];
+
+export const listings = [
+  {
+    content: 'Join Our FREE Coding Community!',
+    category: 'misc'
+  },
+  {
+    content: 'Learn Solidity Blockchain Development Zero to Expert',
+    category: 'education'
+  },
+  {
+    content:
+      'Twitter Space - Future of Frontends in 5-10 years with Misko Hevery',
+    category: 'events'
+  },
+  {
+    content: 'Developer Clothing and Apparel',
+    category: 'products'
+  },
+  {
+    content: '🤖 Free (Virtual) Workshop on TinyML and IoT',
+    category: 'events'
+  }
+];
+
+export const discussMock = [
+  {
+    title: 'What is Doom Scrolling?',
+    comments: 0,
+    isNew: true
+  },
+  {
+    title: 'What was your win this week?',
+    comments: 17,
+    isNew: false
+  }
+];
+
+export const javascriptMock = [
+  {
+    title: 'How to showcase your projects?',
+    comments: 1,
+    isNew: false
+  },
+  {
+    title: 'Breaking Into the Tech Industry: Unleash Your Potential',
+    comments: 0,
+    isNew: true
+  }
+];

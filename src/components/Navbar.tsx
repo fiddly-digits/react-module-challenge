@@ -5,6 +5,8 @@ interface Props {
   isOnline: boolean;
 }
 
+//FIXME: Fix position of the navbar to top
+
 export default function Navbar(props: Props) {
   return (
     <nav className='container grid grid-cols-12 mx-auto h-14'>

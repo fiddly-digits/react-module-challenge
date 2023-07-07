@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import LeftAside from '../components/LeftAside';
+import RightAside from '../components/RightAside';
 export default function Home() {
   return (
     <>
@@ -13,9 +14,10 @@ export default function Home() {
           <main className='col-span-12 row-span-3 md:col-span-6 md:col-start-4 md:row-span-3 border-helper'>
             Main
           </main>
-          <aside className='hidden md:flex md:col-span-3 md:col-start-10 md:row-span-3 border-helper'>
+          {/* <aside className='hidden md:flex md:col-span-3 md:col-start-10 md:row-span-3 border-helper'>
             Cards Aside
-          </aside>
+          </aside> */}
+          <RightAside />
         </div>
         <footer className='grid grid-cols-12 border-helper'>Footer</footer>
       </div>
