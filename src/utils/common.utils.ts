@@ -48,3 +48,18 @@ export const items = [
     icon: '../software-icon.svg'
   }
 ];
+
+export const otherItems = [
+  {
+    name: 'Code of Conduct',
+    icon: '../code-icon.svg'
+  },
+  {
+    name: 'Privacy Policy',
+    icon: '../privacy-icon.svg'
+  },
+  {
+    name: 'Terms of Use',
+    icon: '../terms-icon.svg'
+  }
+];
