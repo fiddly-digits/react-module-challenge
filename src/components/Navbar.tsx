@@ -5,13 +5,12 @@ interface Props {
   isOnline: boolean;
 }
 
-//FIXME: Fix position of the navbar to top
+//TODO: Create Onside Menu
 
 export default function Navbar(props: Props) {
   return (
     <nav className='container grid grid-cols-12 mx-auto h-14'>
       <div className='flex items-center justify-between col-span-12 px-2'>
-        {/* //TODO: Create Onside Menu */}
         <div className='flex items-center w-1/3 gap-2'>
           <a className='p-2 space-y-1 rounded-md hover:bg-indigo-200/50 md:hidden'>
             <div className='w-5 h-0.5 bg-gray-600'></div>
