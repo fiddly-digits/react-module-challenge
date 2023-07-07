@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar';
-
+import LeftAside from '../components/LeftAside';
 export default function Home() {
   return (
     <>
@@ -9,9 +9,7 @@ export default function Home() {
 
       <div className='container mx-auto'>
         <div className='grid grid-cols-12 grid-rows-3 gap-4'>
-          <aside className='hidden md:flex md:col-span-3 md:row-span-3 border-helper'>
-            Menu Bar
-          </aside>
+          <LeftAside />
           <main className='col-span-12 row-span-3 md:col-span-6 md:col-start-4 md:row-span-3 border-helper'>
             Main
           </main>
