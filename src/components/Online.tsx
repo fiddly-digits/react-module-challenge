@@ -1,3 +1,5 @@
+//TODO: Create Dropdown menu
+
 export default function Online() {
   return (
     <div className='flex items-center gap-2'>
@@ -14,7 +16,6 @@ export default function Online() {
         <i className='mt-2 text-2xl iconoir-bell'></i>
       </a>
       <button>
-        {/* //TODO: Create Dropdown menu */}
         <img
           src='https://api.dicebear.com/6.x/big-ears-neutral/svg'
           alt='avatar'

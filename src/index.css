@@ -17,10 +17,25 @@ body {
   }
 }
 
-.search-bar {
+@layer components {
+  .text-decoration {
+    @apply before:content-["\2022"] before:text-black before:pe-2 before:inline-block before:font-bold;
+  }
+  .text-clean {
+    @apply before:content-["\0020"];
+  }
+}
+
+.search-bar,
+.user-input,
+.pwd-input {
   border-color: transparent;
   border-style: none;
   border-width: 0px;
   outline: none;
   padding: 5px;
+}
+
+.card:not(:first-of-type) .card-img-top {
+  display: none;
 }

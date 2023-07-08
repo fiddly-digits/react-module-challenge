@@ -1,6 +1,6 @@
 export default function SocialMenu() {
   return (
-    <div className='flex items-center justify-around h-10 mb-2 text-xl grow border-helper'>
+    <div className='flex items-center justify-around h-10 mb-2 text-xl'>
       <a
         href=''
         className='p-2 rounded fa-brands fa-twitter hover:text-indigo-600 hover:bg-indigo-200/50'

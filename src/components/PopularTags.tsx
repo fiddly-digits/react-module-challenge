@@ -6,7 +6,10 @@ export default function PopularTags() {
       <div className='flex flex-col h-[40vh]  overflow-y-auto'>
         {popularHashtags.map((popularHashtag) => {
           return (
-            <a className='p-2 hover:rounded-lg hover:bg-indigo-200/50 hover:text-indigo-600 hover:underline'>
+            <a
+              key={`hashtag-${popularHashtag.name}`}
+              className='p-2 hover:rounded-lg hover:bg-indigo-200/50 hover:text-indigo-600 hover:underline'
+            >
               {popularHashtag.name}
             </a>
           );
