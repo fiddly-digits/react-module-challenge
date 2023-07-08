@@ -1,7 +1,7 @@
 import MainCard from './MainCard';
 import { useEffect, useState } from 'react';
-import { Outlet, Link } from 'react-router-dom';
-import { Post, PostResult } from '../utils/common.types';
+//import { Outlet, Link } from 'react-router-dom';
+import { PostResult } from '../utils/common.types';
 
 export default function MainComponent() {
   const [data, setData] = useState<PostResult>();
