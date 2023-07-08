@@ -6,6 +6,7 @@ interface Props {
 }
 
 //TODO: Create Onside Menu
+//TODO: Make Login Card
 
 export default function Navbar(props: Props) {
   return (

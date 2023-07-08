@@ -1,6 +1,8 @@
 import Navbar from '../components/Navbar';
 import LeftAside from '../components/LeftAside';
 import RightAside from '../components/RightAside';
+import Footer from '../components/Footer';
+
 export default function Home() {
   return (
     <>
@@ -19,8 +21,11 @@ export default function Home() {
           </aside> */}
           <RightAside />
         </div>
-        <footer className='grid grid-cols-12 border-helper'>Footer</footer>
       </div>
+
+      <footer className='bg-neutral-200'>
+        <Footer />
+      </footer>
     </>
   );
 }
