@@ -10,3 +10,11 @@ export interface AuthResponse {
   data?: string;
   message?: string;
 }
+
+export interface Token {
+  id: string;
+}
+
+export interface UserInfo {
+  id: string;
+}
