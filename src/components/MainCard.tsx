@@ -1,41 +1,60 @@
-export default function MainCard() {
+import { useEffect, useState } from 'react';
+import { Post, UserResult } from '../utils/common.types';
+import TimeAgo from 'timeago-react';
+
+interface Props {
+  post: Post;
+}
+
+export default function MainCard(props: Props) {
+  const [postOwner, setPostOwner] = useState<UserResult>();
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/users/${props.post.postOwner}`)
+      .then((res) => res.json())
+      .then((res: UserResult) => setPostOwner(res))
+      .catch((error) => alert(error));
+  });
+
   return (
     <div className='block bg-white rounded-lg outline outline-1 outline-neutral-500/20'>
-      <img
-        className='rounded-t-lg'
-        src='https://res.cloudinary.com/practicaldev/image/fetch/s--0vGV0EPT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bsi8skbulgamzqnjq7ph.png'
-        alt=''
-      />
+      <img className='rounded-t-lg' src={props.post.postImg} alt='' />
       <div className='p-6'>
         <div className='flex items-center gap-1.5'>
           <img
-            src='https://api.dicebear.com/6.x/big-ears-neutral/svg'
+            src={postOwner?.data?.picture}
             alt='avatar'
             className='border border-black rounded-full w-7 h-7'
           />
           <div>
             <p className='p-0.5 text-sm rounded hover:bg-neutral-300/30'>
-              Placeholder Name
+              {`${postOwner?.data?.name.first ?? 'placeholder'} ${
+                postOwner?.data?.name.last ?? 'Name'
+              }`}
             </p>
-            <p className='px-1 text-xs'>Jul 7</p>
+            <TimeAgo
+              className='px-1 text-xs text-gray-500 hover:text-black'
+              datetime={props.post.postDate}
+              locale='en_US'
+            />
           </div>
         </div>
         <div className='flex flex-col gap-2 ps-8'>
           <h5 className='mt-2 text-3xl font-bold leading-tight text-neutral-800 hover:text-indigo-600'>
-            AWS CloudFormation Explained
+            {props.post.postTitle}
           </h5>
           <div className='flex gap-6 text-sm'>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #aws
+              {props.post.hashtags.first}
             </p>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #cloud
+              {props.post.hashtags.second}
             </p>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #infrastructure
+              {props.post.hashtags.third}
             </p>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #backend
+              {props.post.hashtags.fourth}
             </p>
           </div>
           <div className='flex items-center justify-between'>
