@@ -5,7 +5,7 @@ interface Props {
 
 export default function HashCard(props: Props) {
   return (
-    <div className='block my-2 rounded-lg outline outline-1 outline-neutral-500/20'>
+    <div className='block my-2 bg-white rounded-lg outline outline-1 outline-neutral-500/20'>
       <div className='flex items-center px-6 py-3 border-b-2 border-neutral-100'>
         <h2 className='text-lg font-extrabold'>{props.hash}</h2>
       </div>
