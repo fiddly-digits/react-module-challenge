@@ -33,3 +33,7 @@ body {
   outline: none;
   padding: 5px;
 }
+
+.card:not(:first-of-type) .card-img-top {
+  display: none;
+}

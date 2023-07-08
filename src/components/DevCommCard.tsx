@@ -5,7 +5,7 @@ interface Props {
 
 export default function DevCommCard(props: Props) {
   return (
-    <div className='block p-5 mt-2 rounded-lg outline outline-1 outline-neutral-500/20'>
+    <div className='block p-5 mt-2 bg-white rounded-lg outline outline-1 outline-neutral-500/20'>
       <div className='flex justify-between mb-2'>
         <p>DEV Community</p>
         <div className='flex items-center h-3'>
@@ -18,10 +18,10 @@ export default function DevCommCard(props: Props) {
         </a>
       )}
       <div className='mt-4'>
-        <h5 className='mb-4 text-lg font-medium leading-tight text-neutral-800 dark:text-neutral-50'>
+        <h5 className='mb-4 text-lg font-medium leading-tight text-neutral-800'>
           Calling all early-career developers & coding mentors!
         </h5>
-        <p className='mb-4 text-base text-neutral-600 dark:text-neutral-200'>
+        <p className='mb-4 text-base text-neutral-600'>
           Join CodeNewbie Community: a supportive space for coding newbies to
           connect & express themselves.
         </p>
