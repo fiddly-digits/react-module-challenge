@@ -17,23 +17,23 @@ export default function Login() {
   const navigate = useNavigate();
 
   async function onSubmit(data: LoginData) {
-    const response: Response = await fetch('https://dummyjson.com/auth/login', {
+    const response: Response = await fetch('http://localhost:8080/auth', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: data.username,
+        email: data.username,
         password: data.password
       })
     });
     const res: AuthResponse = (await response.json()) as AuthResponse;
     console.log(res);
-    if (res?.token) {
+    if (res?.data) {
       checkbox.current?.checked === true
-        ? localStorage.setItem('token', res?.token)
-        : sessionStorage.setItem('token', res?.token);
+        ? localStorage.setItem('token', res?.data)
+        : sessionStorage.setItem('token', res?.data);
       navigate('/');
     } else {
-      setFail(res.message);
+      setFail(res?.message);
       //alert('Failed Login');
     }
   }

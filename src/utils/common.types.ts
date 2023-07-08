@@ -4,8 +4,9 @@ export interface LoginData {
 }
 
 export interface AuthResponse {
-  token: string;
-  message: string;
-  //   success: boolean;
-  //   data: string;
+  //   token: string;
+  //   message: string;
+  success: boolean;
+  data?: string;
+  message?: string;
 }
