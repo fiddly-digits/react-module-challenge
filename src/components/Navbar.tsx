@@ -1,5 +1,6 @@
 import Online from './Online';
 import Offline from './Offline';
+import { Link } from 'react-router-dom';
 
 interface Props {
   isOnline: boolean;
@@ -18,11 +19,13 @@ export default function Navbar(props: Props) {
             <div className='w-5 h-0.5 bg-gray-600'></div>
             <div className='w-5 h-0.5 bg-gray-600'></div>
           </a>
-          <img
-            className='h-10'
-            src='https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png'
-            alt='devlogo'
-          />
+          <Link to='/'>
+            <img
+              className='h-10'
+              src='https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png'
+              alt='devlogo'
+            />
+          </Link>
           <form
             action='Search'
             className='justify-between hidden grow md:rounded-md md:flex md:outline md:outline-1 outline-gray-500/50 hover:outline-2 hover:outline-indigo-600'

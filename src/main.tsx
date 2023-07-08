@@ -3,12 +3,24 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import Home from './pages/Home';
+import Index from './layouts/Index';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-    errorElement: <h1>WIP NOT FOUND RIGHT NOW 404</h1>
+    element: <Index />,
+    errorElement: <h1>WIP NOT FOUND RIGHT NOW 404</h1>,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/Login',
+        element: <Login />
+      }
+    ]
   }
 ]);
 
