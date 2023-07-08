@@ -1,7 +1,7 @@
 import { items, otherItems } from '../utils/common.utils';
 export default function Footer() {
   return (
-    <footer className='container grid grid-cols-12 p-12 mx-auto border-helper'>
+    <footer className='container grid grid-cols-12 p-12 mx-auto  '>
       <div className='flex flex-col items-center justify-center col-span-12 gap-2 text-sm text-center'>
         <p>
           <span className='text-indigo-600 hover:underline'>Dev Community</span>{' '}

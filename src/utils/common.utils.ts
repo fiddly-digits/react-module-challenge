@@ -45,7 +45,7 @@ export const items = [
   },
   {
     name: 'Software Comparisons',
-    icon: '../software-icon.svg'
+    icon: '../software-comparison.svg'
   }
 ];
 
