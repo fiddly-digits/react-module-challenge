@@ -26,7 +26,9 @@ body {
   }
 }
 
-.search-bar {
+.search-bar,
+.user-input,
+.pwd-input {
   border-color: transparent;
   border-style: none;
   border-width: 0px;
