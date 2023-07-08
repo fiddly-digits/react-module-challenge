@@ -1,10 +1,12 @@
 import Navbar from '../components/Navbar';
 import LeftAside from '../components/LeftAside';
 import RightAside from '../components/RightAside';
+import Footer from '../components/Footer';
+
 export default function Home() {
   return (
     <>
-      <header className=' bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]'>
+      <header className=' bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] sticky top-0'>
         <Navbar isOnline={true} />
       </header>
 
@@ -19,8 +21,11 @@ export default function Home() {
           </aside> */}
           <RightAside />
         </div>
-        <footer className='grid grid-cols-12 border-helper'>Footer</footer>
       </div>
+
+      <footer className='bg-neutral-200'>
+        <Footer />
+      </footer>
     </>
   );
 }

@@ -17,6 +17,15 @@ body {
   }
 }
 
+@layer components {
+  .text-decoration {
+    @apply before:content-["\2022"] before:text-black before:pe-2 before:inline-block before:font-bold;
+  }
+  .text-clean {
+    @apply before:content-["\0020"];
+  }
+}
+
 .search-bar {
   border-color: transparent;
   border-style: none;
