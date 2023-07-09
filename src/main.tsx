@@ -5,6 +5,7 @@ import './index.css';
 import Home from './pages/Home';
 import Index from './layouts/Index';
 import Login from './pages/Login';
+import Detail from './pages/Detail';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/Login',
         element: <Login />
+      },
+      {
+        path: '/Detail/:id',
+        element: <Detail />
       }
     ]
   }

@@ -15,6 +15,62 @@ export interface Token {
   id: string;
 }
 
-export interface UserInfo {
-  id: string;
+export interface PostResult {
+  success: boolean;
+  data?: Post[];
+}
+
+export interface UserResult {
+  success: boolean;
+  data?: User;
+}
+
+export interface GetAPost {
+  success: boolean;
+  data?: Post;
+}
+
+export interface CommentsResult {
+  success: boolean;
+  data?: Comment[];
+}
+
+export interface Comment {
+  _id: string;
+  commentFromPostWithIdentifier: string;
+  content: string;
+  commenterID: string;
+  commentDate: string;
+}
+
+export interface User {
+  _id: string;
+  name: {
+    first: string;
+    last: string;
+  };
+  location: string;
+  picture: string;
+  joined: string;
+  work: string;
+  description: string;
+}
+
+export interface Post {
+  _id: string;
+  postTitle: string;
+  postBody: string;
+  postImg: string;
+  postDate: string;
+  postOwner: string;
+  hashtags: Hashtags;
+  likes: number;
+  bookmarks: number;
+}
+
+interface Hashtags {
+  first: string;
+  second: string;
+  third: string;
+  fourth: string;
 }
