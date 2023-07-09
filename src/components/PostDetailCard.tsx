@@ -1,28 +1,37 @@
 import TimeAgo from 'timeago-react';
 import CommentCard from './CommentCard';
+import { Post, User, Comment } from '../utils/common.types';
 
-export default function PostDetailCard() {
+interface Props {
+  content?: Post;
+  postOwner?: User;
+  comments?: Comment[];
+}
+
+export default function PostDetailCard(props: Props) {
   return (
-    <article className='block bg-white rounded-lg outline outline-1 outline-neutral-500/20'>
+    <article className='block w-full bg-white rounded-lg outline outline-1 outline-neutral-500/20'>
       <img
-        className='rounded-t-lg'
-        src='https://res.cloudinary.com/practicaldev/image/fetch/s--GRvD3XZL--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2tw10f3ba9jakt6xlne3.jpg'
-        alt=''
+        className='object-contain w-full h-auto rounded-t-lg'
+        src={props.content?.postImg}
+        alt='post-header'
       />
       <div className='px-12 py-6'>
         <div className='flex items-center gap-1.5'>
           <img
-            src='https://res.cloudinary.com/practicaldev/image/fetch/s--BHuURcXO--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/667361/f10c4adf-d2ec-4c66-86a3-6c67925479bb.png'
+            src={props.postOwner?.picture}
             alt='avatar'
             className='w-10 h-10 rounded-full'
           />
           <div>
             <p className='p-0.5 text-sm rounded hover:bg-neutral-300/30'>
-              Placeholder Name
+              {`${props.postOwner?.name.first ?? 'Placeholder'} ${
+                props.postOwner?.name.last ?? 'Name'
+              }`}
             </p>
             <TimeAgo
               className='px-1 text-xs text-gray-500 hover:text-black'
-              datetime='2016-08-08 08:08:08'
+              datetime={`${props.content?.postDate ?? '1688927282'}`}
               locale='en_US'
             />
           </div>
@@ -36,38 +45,23 @@ export default function PostDetailCard() {
         </div>
         <div className='flex flex-col gap-2'>
           <h5 className='mt-2 text-5xl font-bold leading-tight text-neutral-800'>
-            Create A Random Quote Generator with HTML, CSS, and JavaScript
+            {props.content?.postTitle}
           </h5>
           <div className='flex gap-6 text-sm'>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #webdev
+              {props.content?.hashtags.first}
             </p>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #html
+              {props.content?.hashtags.second}
             </p>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #css
+              {props.content?.hashtags.third}
             </p>
             <p className='p-1 rounded hover:outline hover:outline-1 hover:outline-slate-400 hover:bg-slate-400/20'>
-              #javascript
+              {props.content?.hashtags.fourth}
             </p>
           </div>
-          <p>
-            We software engineers don’t agree on much, but we agree on this one:
-            database schema changes are a pain in the a**. Part of my job at
-            Xata is to talk with as many developers as possible - from fresh
-            bootcamp graduates, to indie developers, to principal engineers
-            working in large teams. We talk about databases in general, what
-            issues they face, the tools they use, and so on. From the people
-            that we’ve talked with, almost everyone said that schema changes and
-            schema management are one of their least favorite parts of working
-            with databases. While this sentiment is pretty universal, the
-            reasons that they bring up are not always the same. Small companies
-            or developers working on hobby projects, for example, have to make
-            lots of changes as their applications grow and they discover new
-            requirements. They’d like their schema changes workflow to be as
-            simple and straight-forward as pull requests on GitHub.
-          </p>
+          <p>{props.content?.postBody}</p>
         </div>
       </div>
       <section className='px-12 py-3 border-t-2 border-neutral-100'>
@@ -86,11 +80,12 @@ export default function PostDetailCard() {
           <textarea
             name='post-comment'
             placeholder='Add to the discussion'
-            className='h-20 border border-gray-200 rounded resize-none grow focus:border-indigo-600 focus:outline-none'
+            className='h-20 border border-gray-200 rounded resize-none grow focus:border-indigo-600 focus:outline-none placeholder:p-2'
           />
         </div>
-        <CommentCard />
-        <CommentCard />
+        {props?.comments?.map((comment) => {
+          return <CommentCard comment={comment} />;
+        })}
 
         <div className='flex items-center justify-center gap-2 mt-5'>
           <p className='text-sm text-gray-400'>Code of Conduct</p>
