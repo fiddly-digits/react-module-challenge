@@ -5,10 +5,10 @@ import { useRef, useState } from 'react';
 import LoginError from '../components/LoginError';
 import Navbar from '../components/Navbar';
 
-//FIXME: Internal size of inputs
-
 export default function Login() {
   const [fail, setFail] = useState<string>();
+  const [login, setLogin] = useState<boolean>(false);
+
   const {
     handleSubmit,
     register,
@@ -62,72 +62,90 @@ export default function Login() {
                 DEV Community is a community of 1,096,472 amazing developers
               </p>
               <div className='flex flex-col gap-2'>
-                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white bg-black rounded-md'>
+                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white bg-black rounded-md hover:bg-black/90'>
                   <i className='fa-brands fa-apple' />
                   Continue with Apple
                 </button>
-                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white bg-blue-900 rounded-md'>
-                  <i className='fa-brands fa-facebook' />
-                  Continue with Facebook
-                </button>
-                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white rounded-md bg-neutral-800'>
+                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white rounded-md bg-neutral-800 hover:bg-neutral-800/90'>
                   <i className='fa-brands fa-github' />
                   Continue with GitHub
                 </button>
-                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white rounded-md bg-sky-500'>
+                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white rounded-md bg-sky-500 hover:bg-sky-500/90'>
                   <i className='fa-brands fa-twitter' />
                   Continue with Twitter
                 </button>
+                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white bg-blue-900 rounded-md hover:bg-blue-900/90'>
+                  <i className='iconoir-mail' />
+                  Continue with Your Mail
+                </button>
               </div>
-              <div className='relative flex justify-center p-4 after:content-[" "] after:border after:border-gray-400 after:block after:absolute after:w-full after:rounded after:top-[25px] after:z-10'>
-                <p className='z-20 px-2 text-sm bg-white text-neutral-600'>
-                  Have a password? Continue with your email address
-                </p>
-              </div>
-              <form
-                className='flex flex-col justify-center gap-3'
-                onSubmit={(event) => void handleSubmit(onSubmit)(event)}
-              >
-                <label htmlFor='user-input'>Email</label>
-                <div className='rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
-                  <input
-                    type='text'
-                    className='user-input'
-                    id='user-input'
-                    {...register('username', {
-                      required: { value: true, message: 'Email Required' }
-                    })}
-                  />
+              {!login && (
+                <div className='relative flex justify-center p-4 after:content-[" "] after:border after:border-gray-400 after:block after:absolute after:w-full after:rounded after:top-[25px] after:z-10'>
+                  <p className='z-20 px-2 text-sm text-center bg-white text-neutral-600'>
+                    Already have an Account?
+                    <a
+                      className='text-indigo-600'
+                      onClick={() => {
+                        setLogin(true);
+                      }}
+                    >
+                      {' '}
+                      Log In
+                    </a>
+                  </p>
                 </div>
-                <label htmlFor='user-input'>Password</label>
-                <div className='rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+              )}
+              {login && (
+                <form
+                  className='flex flex-col justify-center gap-3'
+                  onSubmit={(event) => void handleSubmit(onSubmit)(event)}
+                >
+                  <div className='relative flex justify-center p-4 after:content-[" "] after:border after:border-gray-400 after:block after:absolute after:w-full after:rounded after:top-[25px] after:z-10'>
+                    <p className='z-20 px-2 text-sm text-center bg-white text-neutral-600'>
+                      Have a password? Continue with your email address
+                    </p>
+                  </div>
+                  <label htmlFor='user-input'>Email</label>
+                  <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                    <input
+                      type='text'
+                      className='user-input grow'
+                      id='user-input'
+                      {...register('username', {
+                        required: { value: true, message: 'Email Required' }
+                      })}
+                    />
+                  </div>
+                  <label htmlFor='user-input'>Password</label>
+                  <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                    <input
+                      type='password'
+                      className='pwd-input grow'
+                      id='pwd-input'
+                      {...register('password', {
+                        required: { value: true, message: 'Password Required' }
+                      })}
+                    />
+                  </div>
+                  <div className='flex items-center gap-3'>
+                    <input
+                      ref={checkbox}
+                      type='checkbox'
+                      className='w-4 h-4 rounded accent-indigo-600 bg-grey-700'
+                      id='check'
+                    />
+                    <label htmlFor='check'>Remember me</label>
+                  </div>
                   <input
-                    type='password'
-                    className='pwd-input'
-                    id='pwd-input'
-                    {...register('password', {
-                      required: { value: true, message: 'Password Required' }
-                    })}
+                    type='submit'
+                    className='h-12 font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-600/90'
+                    value='Continue'
                   />
-                </div>
-                <div className='flex items-center gap-3'>
-                  <input
-                    ref={checkbox}
-                    type='checkbox'
-                    className='w-4 h-4 rounded accent-indigo-600 bg-grey-700'
-                    id='check'
-                  />
-                  <label htmlFor='check'>Remember me</label>
-                </div>
-                <input
-                  type='submit'
-                  className='h-12 font-semibold text-white bg-indigo-600 rounded-md'
-                  value='Continue'
-                />
-              </form>
-              <p className='p-5 text-sm text-center text-indigo-600'>
-                I forgot my password
-              </p>
+                  <p className='p-5 text-sm text-center text-indigo-600'>
+                    I forgot my password
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </div>

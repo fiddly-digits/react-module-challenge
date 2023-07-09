@@ -37,7 +37,7 @@ export default function PostDetailCard(props: Props) {
           </div>
         </div>
         <div className='flex gap-5 text-xl'>
-          <p>💖 0</p>
+          <p>{`💖 ${props.content?.likes ?? 0}`}</p>
           <p>🦄 0</p>
           <p>🤯 0</p>
           <p>🙌 0</p>

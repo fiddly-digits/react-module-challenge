@@ -12,7 +12,6 @@ import TimeAgo from 'timeago-react';
 import MoreFromItem from '../components/MoreFromItem';
 
 //TODO: Encapsulate token logic on Navbar
-//FIXME: Grid logic on Main
 
 export default function Detail() {
   const [userID, setUserID] = useState<string>();
@@ -59,7 +58,7 @@ export default function Detail() {
   return (
     <>
       <header className=' bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] sticky top-0 z-10'>
-        {userID ? <Navbar isOnline={true} /> : <Navbar isOnline={false} />}
+        {userID ? <Navbar userID={userID} /> : <Navbar />}
       </header>
       <div className='container mx-auto'>
         <div className='grid grid-rows-3 gap-4 grid-cols-[repeat(12]'>

@@ -1,5 +1,3 @@
-//TODO: Cambiar ... por Iconoir Elipsis
-
 import { Comment } from '../utils/common.types';
 import TimeAgo from 'timeago-react';
 import { useEffect, useState } from 'react';
@@ -41,7 +39,7 @@ export default function CommentCard(props: Props) {
               locale='en_US'
             />
           </div>
-          <p className='p-1 hover:bg-gray-400/10'>...</p>
+          <i className='p-1 hover:bg-gray-400/10 iconoir-more-horiz' />
         </div>
         <p className='mt-3'>{props.comment?.content}</p>
       </div>
