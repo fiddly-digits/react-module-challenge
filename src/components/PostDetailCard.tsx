@@ -8,6 +8,9 @@ interface Props {
   comments?: Comment[];
 }
 
+//TODO: Fix User Image for post
+// TODO: Add Top Comments Dinamically
+
 export default function PostDetailCard(props: Props) {
   return (
     <article className='block w-full bg-white rounded-lg outline outline-1 outline-neutral-500/20'>

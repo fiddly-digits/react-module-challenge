@@ -11,6 +11,12 @@ export interface AuthResponse {
   message?: string;
 }
 
+export interface postSuccess {
+  success: boolean;
+  message?: string;
+  data?: Post;
+}
+
 export interface Token {
   id: string;
 }
@@ -73,4 +79,11 @@ interface Hashtags {
   second: string;
   third: string;
   fourth: string;
+}
+
+export interface PostSubmit {
+  postTitle: string;
+  postBody: string;
+  postImg: string;
+  hashtags: Hashtags;
 }
