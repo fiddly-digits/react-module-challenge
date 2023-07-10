@@ -4,10 +4,10 @@ import SocialMenu from './SocialMenu';
 
 export default function Offcanvas() {
   return (
-    <div className='drawer-side'>
+    <div className='drawer-side '>
       <label htmlFor='my-drawer-3' className='drawer-overlay'></label>
-      <ul className='h-full p-4 menu w-80 bg-base-200'>
-        <div className='flex items-center justify-between'>
+      <ul className='h-full p-4 bg-white menu w-80'>
+        <div className='flex items-center justify-between '>
           <p className='text-xl font-bold'>Dev Community</p>
         </div>
         <Menu isOther={false} />
