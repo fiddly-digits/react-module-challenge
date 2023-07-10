@@ -8,6 +8,8 @@ interface Props {
   query?: string;
 }
 
+//TODO: Encapsulate logic on function
+
 export default function MainComponent(props: Props) {
   const [data, setData] = useState<PostResult>();
   const [isRelevant, setRelevant] = useState(true);

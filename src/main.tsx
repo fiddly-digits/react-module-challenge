@@ -7,6 +7,7 @@ import Index from './layouts/Index';
 import Login from './pages/Login';
 import Detail from './pages/Detail';
 import Post from './layouts/Post';
+import Register from './pages/Register';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/Login',
         element: <Login />
+      },
+      {
+        path: '/Register',
+        element: <Register />
       },
       {
         path: '/Detail/:id',

@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthResponse, LoginData } from '../utils/common.types';
 import { useRef, useState } from 'react';
 import LoginError from '../components/LoginError';
@@ -73,10 +73,13 @@ export default function Login() {
                   <i className='fa-brands fa-twitter' />
                   Continue with Twitter
                 </button>
-                <button className='flex items-center justify-center h-12 gap-2 font-semibold text-white bg-blue-900 rounded-md hover:bg-blue-900/90'>
+                <Link
+                  to='/Register'
+                  className='flex items-center justify-center h-12 gap-2 font-semibold text-white bg-blue-900 rounded-md hover:bg-blue-900/90'
+                >
                   <i className='iconoir-mail' />
                   Continue with Your Mail
-                </button>
+                </Link>
               </div>
               {!login && (
                 <div className='relative flex justify-center p-4 after:content-[" "] after:border after:border-gray-400 after:block after:absolute after:w-full after:rounded after:top-[25px] after:z-10'>
