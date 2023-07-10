@@ -43,10 +43,7 @@ export default function Navbar(props: Props) {
                   alt='devlogo'
                 />
               </Link>
-              <form
-                action='Search'
-                className='justify-between hidden grow md:rounded-md md:flex md:outline md:outline-1 outline-gray-500/50 hover:outline-2 hover:outline-indigo-600'
-              >
+              <div className='justify-between hidden grow md:rounded-md md:flex md:outline md:outline-1 outline-gray-500/50 hover:outline-2 hover:outline-indigo-600'>
                 <input
                   type='text'
                   name='search'
@@ -54,13 +51,12 @@ export default function Navbar(props: Props) {
                   placeholder='Search...'
                 />
                 <button
-                  type='submit'
                   aria-label='search'
                   className='px-1 text-3xl rounded-md hover:bg-indigo-200/50'
                 >
                   <i className='iconoir-search'></i>
                 </button>
-              </form>
+              </div>
             </div>
             {props.userID ? <Online userID={props.userID} /> : <Offline />}
           </div>
