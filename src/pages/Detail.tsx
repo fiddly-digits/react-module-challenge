@@ -24,11 +24,9 @@ export default function Detail() {
   useEffect(() => {
     const token =
       localStorage.getItem('token') || sessionStorage.getItem('token');
-    console.log(token);
     if (token) {
       const payload: string = token.split('.')[1];
       const plainPayload: Token = JSON.parse(atob(payload)) as Token;
-      console.log(plainPayload.id);
       setUserID(plainPayload.id);
       //window.location.reload();
     }

@@ -11,7 +11,6 @@ export default function Post() {
   const [bodyFocused, setBodyFocused] = useState(false);
 
   async function onSubmit(post: PostSubmit) {
-    console.log('Hashtags', post.hashtags);
     const token =
       localStorage.getItem('token') || sessionStorage.getItem('token');
     const response: Response = await fetch('http://localhost:8080/posts', {

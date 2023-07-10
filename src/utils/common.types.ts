@@ -72,6 +72,7 @@ export interface Post {
   hashtags: Hashtags;
   likes: number;
   bookmarks: number;
+  isRelevant: boolean;
 }
 
 interface Hashtags {

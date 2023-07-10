@@ -27,7 +27,6 @@ export default function Login() {
       })
     });
     const res: AuthResponse = (await response.json()) as AuthResponse;
-    console.log(res);
     if (res?.data) {
       checkbox.current?.checked === true
         ? localStorage.setItem('token', res?.data)
@@ -42,7 +41,7 @@ export default function Login() {
   return (
     <>
       <header className=' bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] sticky top-0'>
-        <Navbar isOnline={false} />
+        <Navbar />
       </header>
       <div className='container mx-auto'>
         <div className='grid grid-cols-12 grid-rows-3 gap-4'>

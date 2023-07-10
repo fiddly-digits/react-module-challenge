@@ -2,13 +2,26 @@ import Online from './Online';
 import Offline from './Offline';
 import { Link } from 'react-router-dom';
 import Offcanvas from './OffCanvas';
+import { useState, useRef } from 'react';
 
 interface Props {
   userID?: string;
-  isOnline?: boolean;
+  onQuery?(query: string): void;
 }
 
 export default function Navbar(props: Props) {
+  const [query, setQuery] = useState('');
+  const queryInput = useRef<HTMLInputElement>(null);
+
+  function onAddItem() {
+    props.onQuery?.(query);
+    setQuery('');
+    queryInput.current?.blur();
+  }
+  function onEnter(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Enter') onAddItem();
+  }
+
   return (
     <div className='drawer'>
       <input id='my-drawer-3' type='checkbox' className='drawer-toggle' />
@@ -43,24 +56,25 @@ export default function Navbar(props: Props) {
                   alt='devlogo'
                 />
               </Link>
-              <form
-                action='Search'
-                className='justify-between hidden grow md:rounded-md md:flex md:outline md:outline-1 outline-gray-500/50 hover:outline-2 hover:outline-indigo-600'
-              >
+              <div className='justify-between hidden grow md:rounded-md md:flex md:outline md:outline-1 outline-gray-500/50 hover:outline-2 hover:outline-indigo-600'>
                 <input
+                  ref={queryInput}
                   type='text'
                   name='search'
                   className='rounded-md search-bar grow'
                   placeholder='Search...'
+                  onChange={(event) => setQuery(event.target.value)}
+                  onKeyUp={onEnter}
+                  value={query}
                 />
                 <button
-                  type='submit'
                   aria-label='search'
                   className='px-1 text-3xl rounded-md hover:bg-indigo-200/50'
+                  onClick={onAddItem}
                 >
                   <i className='iconoir-search'></i>
                 </button>
-              </form>
+              </div>
             </div>
             {props.userID ? <Online userID={props.userID} /> : <Offline />}
           </div>
