@@ -15,7 +15,7 @@ export default function Navbar(props: Props) {
       <div className='flex flex-col drawer-content'>
         <nav className='container grid grid-cols-12 mx-auto h-14'>
           <div className='flex items-center justify-between col-span-12 px-2'>
-            <div className='flex items-center gap-2'>
+            <div className='flex items-center w-1/2 gap-2'>
               <div className='flex-none md:hidden'>
                 <label
                   htmlFor='my-drawer-3'
