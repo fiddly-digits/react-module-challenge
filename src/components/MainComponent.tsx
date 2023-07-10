@@ -4,11 +4,16 @@ import { useEffect, useState } from 'react';
 import { PostResult } from '../utils/common.types';
 import clsx from 'clsx';
 
-export default function MainComponent() {
+interface Props {
+  query?: string;
+}
+
+export default function MainComponent(props: Props) {
   const [data, setData] = useState<PostResult>();
   const [isRelevant, setRelevant] = useState(true);
   const [isLatest, setLatest] = useState(false);
   const [isTop, setTop] = useState(false);
+  const [hasQuery, setQuery] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:8080/posts/')
@@ -16,6 +21,18 @@ export default function MainComponent() {
       .then((res: PostResult) => setData(res))
       .catch((error) => alert(error));
   }, []);
+
+  useEffect(() => {
+    if (props.query !== undefined) {
+      if (props.query !== '') {
+        console.log('props query', props.query);
+        setQuery(true);
+        setRelevant(false);
+        setLatest(false);
+        setTop(false);
+      }
+    }
+  }, [props.query]);
 
   return (
     <main className='col-span-12 row-span-3 md:col-span-6 md:col-start-4 md:row-span-3'>
@@ -30,6 +47,7 @@ export default function MainComponent() {
             setRelevant(true);
             setLatest(false);
             setTop(false);
+            setQuery(false);
           }}
         >
           Relevant
@@ -44,6 +62,7 @@ export default function MainComponent() {
             setRelevant(false);
             setLatest(true);
             setTop(false);
+            setQuery(false);
           }}
         >
           Latest
@@ -58,12 +77,29 @@ export default function MainComponent() {
             setRelevant(false);
             setLatest(false);
             setTop(true);
+            setQuery(false);
           }}
         >
           Top
         </button>
       </div>
       <div className='flex flex-col gap-4 mb-4'>
+        {data?.data &&
+          hasQuery &&
+          data.data
+            .filter(
+              (post) =>
+                post.postTitle
+                  .toLowerCase()
+                  .includes(props.query?.toLowerCase() ?? 'No Results') ||
+                post.postBody
+                  .toLowerCase()
+                  .includes(props.query?.toLowerCase() ?? 'No Results')
+            )
+            .map((post) => {
+              console.log('post Searched', post);
+              return <MainCard post={post} />;
+            })}
         {data?.data &&
           isLatest &&
           [...data.data]
