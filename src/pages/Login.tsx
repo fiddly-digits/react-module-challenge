@@ -78,7 +78,7 @@ export default function Login() {
                   className='flex items-center justify-center h-12 gap-2 font-semibold text-white bg-blue-900 rounded-md hover:bg-blue-900/90'
                 >
                   <i className='iconoir-mail' />
-                  Continue with Your Mail
+                  Register with your Mail
                 </Link>
               </div>
               {!login && (
