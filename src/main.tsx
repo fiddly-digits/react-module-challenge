@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Index from './layouts/Index';
 import Login from './pages/Login';
 import Detail from './pages/Detail';
+import Post from './layouts/Post';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         element: <Detail />
       }
     ]
+  },
+  {
+    path: '/New',
+    element: <Post />
   }
 ]);
 
