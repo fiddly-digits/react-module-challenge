@@ -60,6 +60,7 @@ export interface User {
   joined: string;
   work: string;
   description: string;
+  login?: LoginData;
 }
 
 export interface Post {

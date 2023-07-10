@@ -40,7 +40,7 @@ export default function Online(props: Props) {
         </a>
         <ul
           tabIndex={0}
-          className='dropdown-content z-[1] menu p-2 shadow bg-base-100 w-52'
+          className='dropdown-content z-[1] menu p-2 shadow bg-white w-52'
         >
           <li className='border-b border-gray-300'>
             <p>
