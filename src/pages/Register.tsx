@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import { useForm } from 'react-hook-form';
 import { User, AuthResponse } from '../utils/common.types';
 import { useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
 //import { useState } from 'react';
 
 export default function Register() {
@@ -9,8 +10,8 @@ export default function Register() {
   const navigate = useNavigate();
   const {
     handleSubmit,
-    register
-    //formState: { errors }
+    register,
+    formState: { errors }
   } = useForm<User>();
 
   async function onSubmit(data: User) {
@@ -62,11 +63,34 @@ export default function Register() {
                 onSubmit={(event) => void handleSubmit(onSubmit)(event)}
               >
                 <div className='flex justify-around'>
-                  <label htmlFor='name-input'>Name</label>
-                  <label htmlFor='lastName-input'>Last Name</label>
+                  <div>
+                    <label htmlFor='name-input'>
+                      Name
+                      {errors.name?.first && (
+                        <span className='text-xs text-center text-red-500 ps-2'>
+                          {`ⓘ ${errors.name?.first.message ?? 'Error'}`}
+                        </span>
+                      )}
+                    </label>
+                  </div>
+                  <label htmlFor='lastName-input'>
+                    Last Name{' '}
+                    {errors.name?.last && (
+                      <span className='text-xs text-center text-red-500 ps-2'>
+                        {`ⓘ ${errors.name?.last.message ?? 'Error'}`}
+                      </span>
+                    )}
+                  </label>
                 </div>
                 <div className='flex gap-5'>
-                  <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                  <div
+                    className={clsx(
+                      'flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600',
+                      {
+                        'outline-red-500': errors.name?.first
+                      }
+                    )}
+                  >
                     <input
                       type='text'
                       className='empty-input grow'
@@ -75,7 +99,14 @@ export default function Register() {
                       })}
                     />
                   </div>
-                  <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                  <div
+                    className={clsx(
+                      'flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600',
+                      {
+                        'outline-red-500': errors.name?.last
+                      }
+                    )}
+                  >
                     <input
                       type='text'
                       className='empty-input grow'
@@ -86,9 +117,21 @@ export default function Register() {
                   </div>
                 </div>
                 <label htmlFor='location-input' className='text-center'>
-                  Location
+                  Location{' '}
+                  {errors.location && (
+                    <span className='text-xs text-center text-red-500 ps-2'>
+                      {`ⓘ ${errors.location.message ?? 'Error'}`}
+                    </span>
+                  )}
                 </label>
-                <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                <div
+                  className={clsx(
+                    'flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600',
+                    {
+                      'outline-red-500': errors.location
+                    }
+                  )}
+                >
                   <input
                     type='text'
                     className='empty-input grow'
@@ -98,9 +141,21 @@ export default function Register() {
                   />
                 </div>
                 <label htmlFor='work-input' className='text-center'>
-                  Work description
+                  Work description{' '}
+                  {errors.work && (
+                    <span className='text-xs text-center text-red-500 ps-2'>
+                      {`ⓘ ${errors.work.message ?? 'Error'}`}
+                    </span>
+                  )}
                 </label>
-                <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                <div
+                  className={clsx(
+                    'flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600',
+                    {
+                      'outline-red-500': errors.work
+                    }
+                  )}
+                >
                   <input
                     type='text'
                     className='empty-input grow'
@@ -113,9 +168,21 @@ export default function Register() {
                   />
                 </div>
                 <label htmlFor='about-input' className='text-center'>
-                  About You
+                  About You{' '}
+                  {errors.description && (
+                    <span className='text-xs text-center text-red-500 ps-2'>
+                      {`ⓘ ${errors.description.message ?? 'Error'}`}
+                    </span>
+                  )}
                 </label>
-                <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                <div
+                  className={clsx(
+                    'flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600',
+                    {
+                      'outline-red-500': errors.description
+                    }
+                  )}
+                >
                   <input
                     type='text'
                     className='empty-input grow'
@@ -125,9 +192,21 @@ export default function Register() {
                   />
                 </div>
                 <label htmlFor='email-input' className='text-center'>
-                  Email
+                  Email{' '}
+                  {errors.login?.username && (
+                    <span className='text-xs text-center text-red-500 ps-2'>
+                      {`ⓘ ${errors.login.username.message ?? 'Error'}`}
+                    </span>
+                  )}
                 </label>
-                <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                <div
+                  className={clsx(
+                    'flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600',
+                    {
+                      'outline-red-500': errors.login?.username
+                    }
+                  )}
+                >
                   <input
                     type='text'
                     className='empty-input grow'
@@ -137,9 +216,21 @@ export default function Register() {
                   />
                 </div>
                 <label htmlFor='pwd-input' className='text-center'>
-                  Password
+                  Password{' '}
+                  {errors.login?.password && (
+                    <span className='text-xs text-center text-red-500 ps-2'>
+                      {`ⓘ ${errors.login.password.message ?? 'Error'}`}
+                    </span>
+                  )}
                 </label>
-                <div className='flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600'>
+                <div
+                  className={clsx(
+                    'flex w-full rounded h-9 outline outline-2 outline-neutral-900/50 hover:outline-2 hover:outline-indigo-600',
+                    {
+                      'outline-red-500': errors.login?.password
+                    }
+                  )}
+                >
                   <input
                     type='password'
                     className='empty-input grow'
