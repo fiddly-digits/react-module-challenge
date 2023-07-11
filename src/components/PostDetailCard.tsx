@@ -1,8 +1,10 @@
 import TimeAgo from 'timeago-react';
 import CommentCard from './CommentCard';
 import { Post, User, Comment } from '../utils/common.types';
+import { Link } from 'react-router-dom';
 
 interface Props {
+  userLogged?: string;
   content?: Post;
   postOwner?: User;
   comments?: Comment[];
@@ -39,6 +41,17 @@ export default function PostDetailCard(props: Props) {
             />
           </div>
         </div>
+        {props.userLogged === props.content?.postOwner && (
+          <div className='flex justify-end'>
+            <Link
+              className='flex items-center gap-3 p-1 rounded hover:bg-indigo-200/30 hover:text-indigo-600'
+              to={`/Edit/${props.content?._id ?? 'ID'}`}
+            >
+              <i className='text-xl iconoir-edit-pencil' />
+              <p className='text-xs'>Edit Post</p>
+            </Link>
+          </div>
+        )}
         <div className='flex gap-5 text-xl'>
           <p>{`💖 ${props.content?.likes ?? 0}`}</p>
           <p>🦄 0</p>
