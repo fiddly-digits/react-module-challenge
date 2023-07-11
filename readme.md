@@ -1,4 +1,4 @@
-# Foobar
+# Final Project React Module
 
 This is my React Challenge Finished in 4 days.
 
