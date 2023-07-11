@@ -79,6 +79,7 @@ export default function Detail() {
           </aside>
           <main className='col-span-12 row-span-3 py-4 md:col-span-6 md:col-start-3 md:row-span-3'>
             <PostDetailCard
+              userLogged={userID}
               content={post?.data}
               postOwner={user?.data}
               comments={comments?.data}

@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Detail from './pages/Detail';
 import Post from './layouts/Post';
 import Register from './pages/Register';
+import EditPost from './layouts/EditPost';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: '/New',
     element: <Post />
+  },
+  {
+    path: '/Edit/:id',
+    element: <EditPost />
   }
 ]);
 
