@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 export default function EditPost() {
   const { handleSubmit, register, setValue } = useForm<PostSubmit>();
   const navigate = useNavigate();
-  const [post, setPost] = useState<postSuccess>();
   const [titleFocused, setTitleFocused] = useState(false);
   const [tagsFocused, setTagsFocused] = useState(false);
   const [bodyFocused, setBodyFocused] = useState(false);
@@ -18,19 +17,17 @@ export default function EditPost() {
   useEffect(() => {
     fetch(`http://localhost:8080/posts/${id ?? 0}`)
       .then((res) => res.json())
-      .then((res: postSuccess) => setPost(res))
+      .then((res: postSuccess) => {
+        setValue('postImg', res?.data?.postImg ?? '');
+        setValue('postTitle', res?.data?.postTitle ?? '');
+        setValue('hashtags.first', res?.data?.hashtags.first ?? '');
+        setValue('hashtags.second', res?.data?.hashtags.second ?? '');
+        setValue('hashtags.third', res?.data?.hashtags.third ?? '');
+        setValue('hashtags.fourth', res?.data?.hashtags.fourth ?? '');
+        setValue('postBody', res?.data?.postBody ?? '');
+      })
       .catch((error) => alert(error));
-  }, [id]);
-
-  useEffect(() => {
-    setValue('postImg', post?.data?.postImg ?? '');
-    setValue('postTitle', post?.data?.postTitle ?? '');
-    setValue('hashtags.first', post?.data?.hashtags.first ?? '');
-    setValue('hashtags.second', post?.data?.hashtags.second ?? '');
-    setValue('hashtags.third', post?.data?.hashtags.third ?? '');
-    setValue('hashtags.fourth', post?.data?.hashtags.fourth ?? '');
-    setValue('postBody', post?.data?.postBody ?? '');
-  });
+  }, [id, setValue]);
 
   async function onSubmit(post: PostSubmit) {
     const token =
@@ -46,11 +43,7 @@ export default function EditPost() {
           Authorization: `Bearer ${token ?? 0}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          postTitle: post.postTitle,
-          postBody: post.postBody,
-          postImg: post.postImg
-        })
+        body: JSON.stringify(post)
       }
     );
     const res: postSuccess = (await response.json()) as postSuccess;
