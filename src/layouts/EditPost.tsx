@@ -3,8 +3,6 @@ import { useForm } from 'react-hook-form';
 import { PostSubmit, postSuccess } from '../utils/common.types';
 import { useEffect, useState } from 'react';
 
-//FIXME: Post Not Showing Changes
-
 export default function EditPost() {
   const { handleSubmit, register, setValue } = useForm<PostSubmit>();
   const navigate = useNavigate();
