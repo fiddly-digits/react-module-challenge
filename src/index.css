@@ -28,7 +28,8 @@ body {
 
 .search-bar,
 .user-input,
-.pwd-input {
+.pwd-input,
+.empty-input {
   border-color: transparent;
   border-style: none;
   border-width: 0px;

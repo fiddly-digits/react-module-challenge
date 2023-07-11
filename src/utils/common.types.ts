@@ -11,6 +11,12 @@ export interface AuthResponse {
   message?: string;
 }
 
+export interface postSuccess {
+  success: boolean;
+  message?: string;
+  data?: Post;
+}
+
 export interface Token {
   id: string;
 }
@@ -25,6 +31,24 @@ export interface UserResult {
   data?: User;
 }
 
+export interface GetAPost {
+  success: boolean;
+  data?: Post;
+}
+
+export interface CommentsResult {
+  success: boolean;
+  data?: Comment[];
+}
+
+export interface Comment {
+  _id: string;
+  commentFromPostWithIdentifier: string;
+  content: string;
+  commenterID: string;
+  commentDate: string;
+}
+
 export interface User {
   _id: string;
   name: {
@@ -33,9 +57,10 @@ export interface User {
   };
   location: string;
   picture: string;
-  joined: number;
+  joined: string;
   work: string;
   description: string;
+  login?: LoginData;
 }
 
 export interface Post {
@@ -46,6 +71,9 @@ export interface Post {
   postDate: string;
   postOwner: string;
   hashtags: Hashtags;
+  likes: number;
+  bookmarks: number;
+  isRelevant: boolean;
 }
 
 interface Hashtags {
@@ -53,4 +81,11 @@ interface Hashtags {
   second: string;
   third: string;
   fourth: string;
+}
+
+export interface PostSubmit {
+  postTitle: string;
+  postBody: string;
+  postImg: string;
+  hashtags: Hashtags;
 }
