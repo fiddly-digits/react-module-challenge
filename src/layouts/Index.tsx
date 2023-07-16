@@ -18,6 +18,7 @@ export default function Index() {
       //window.location.reload();
     }
   }, []);
+
   return (
     <>
       {userID ? (

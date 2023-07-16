@@ -5,7 +5,7 @@ import MainComponent from '../components/MainComponent';
 import { useOutletContext } from 'react-router-dom';
 
 export default function Home() {
-  const query = useOutletContext<string>();
+  const [query] = useOutletContext<string>();
 
   return (
     <>

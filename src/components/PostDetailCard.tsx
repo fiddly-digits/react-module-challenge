@@ -1,7 +1,16 @@
 import TimeAgo from 'timeago-react';
 import CommentCard from './CommentCard';
-import { Post, User, Comment } from '../utils/common.types';
-import { Link } from 'react-router-dom';
+import {
+  Post,
+  User,
+  Comment,
+  CommentSubmit,
+  CommentSuccess
+} from '../utils/common.types';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { UserResult } from '../utils/common.types';
+import { useForm } from 'react-hook-form';
 
 interface Props {
   userLogged?: string;
@@ -10,10 +19,48 @@ interface Props {
   comments?: Comment[];
 }
 
-//TODO: Fix User Image for post
-// TODO: Add Top Comments Dinamically
+//FIXME: Fix Blur on button
 
 export default function PostDetailCard(props: Props) {
+  const [LoggedUser, setLoggedUser] = useState<UserResult>();
+  const textAreaContainer = useRef<HTMLInputElement>(null);
+  const [commentTextFocused, setCommentTextFocused] = useState<boolean>(false);
+
+  const { handleSubmit, register } = useForm<CommentSubmit>();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/users/${props.userLogged ?? '0'}`)
+      .then((res) => res.json())
+      .then((res: UserResult) => setLoggedUser(res))
+      .catch((error) => alert(error));
+  }, [props.userLogged]);
+
+  async function onSubmit(data: CommentSubmit) {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const response: Response = await fetch(
+      `http://localhost:8080/comments/?postID=${id ?? 0}`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token ?? 0}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          content: data.content
+        })
+      }
+    );
+    const res: CommentSuccess = (await response.json()) as CommentSuccess;
+    if (res) {
+      location.reload();
+    } else {
+      alert('Something goes wrong with your comment');
+    }
+  }
+
   return (
     <article className='block w-full bg-white rounded-lg outline outline-1 outline-neutral-500/20'>
       <img
@@ -82,22 +129,74 @@ export default function PostDetailCard(props: Props) {
       </div>
       <section className='px-12 py-3 border-t-2 border-neutral-100'>
         <div className='flex items-center justify-between'>
-          <h3 className='text-2xl font-semibold'>Top comments (0)</h3>
+          <h3 className='text-2xl font-semibold'>
+            Top comments ({props.comments?.length})
+          </h3>
           <button className='p-1.5 rounded-md outline outline-2 outline-gray-200 hover:bg-gray-200/30'>
             Subscribe
           </button>
         </div>
         <div className='flex w-full gap-2 mt-8'>
           <img
-            src='https://res.cloudinary.com/practicaldev/image/fetch/s--BHuURcXO--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/667361/f10c4adf-d2ec-4c66-86a3-6c67925479bb.png'
+            src={LoggedUser?.data?.picture}
             alt='avatar'
             className='w-8 h-8 rounded-full'
           />
-          <textarea
-            name='post-comment'
-            placeholder='Add to the discussion'
-            className='h-20 border border-gray-200 rounded resize-none grow focus:border-indigo-600 focus:outline-none placeholder:p-2'
-          />
+          <form
+            className='flex flex-col grow'
+            onSubmit={(event) => void handleSubmit(onSubmit)(event)}
+          >
+            <div
+              className='flex flex-col border border-gray-200 rounded grow focus:border-indigo-600 focus:outline-none '
+              ref={textAreaContainer}
+              onFocus={() => setCommentTextFocused(true)}
+              onBlur={() => setCommentTextFocused(true)}
+            >
+              <textarea
+                placeholder='Add to the discussion'
+                className='h-20 resize-none placeholder:p-2 focus:outline-none'
+                {...register('content', {
+                  required: { value: true, message: 'Comment is Required' },
+                  minLength: {
+                    value: 3,
+                    message: 'Min Length Required is 3'
+                  }
+                })}
+              />
+              {commentTextFocused && (
+                <div className='flex items-center justify-between pt-1 text-3xl border-t border-gray-400/50'>
+                  <div className='flex items-center gap-2'>
+                    <a className='iconoir-bold icons-style'></a>
+                    <a className='iconoir-italic icons-style'></a>
+                    <a className='iconoir-link icons-style'></a>
+                    <a
+                      className='iconoir-numbered-list-left icons-style'
+                      target='_blank'
+                    ></a>
+                    <a className='iconoir-list icons-style'></a>
+                    <a className='iconoir-underline d-none d-lg-flex icons-style'></a>
+                    <a className='iconoir-quote d-none d-lg-flex icons-style'></a>
+                    <a className='iconoir-code d-none d-lg-flex icons-style'></a>
+                    <a className='iconoir-code-brackets-square d-none d-lg-flex icons-style'></a>
+                    <a className='iconoir-flash d-none d-lg-flex icons-style'></a>
+                    <a className='iconoir-media-image icons-style'></a>
+                  </div>
+
+                  <div className='flex items-center'>
+                    <a className='iconoir-more-vert icons-style'></a>
+                  </div>
+                </div>
+              )}
+            </div>
+            {commentTextFocused && (
+              <div>
+                <input
+                  type='submit'
+                  className='h-10 px-3 mt-2 font-semibold text-white bg-indigo-600 rounded-md grow-0 hover:bg-indigo-600/90'
+                />
+              </div>
+            )}
+          </form>
         </div>
         {props?.comments?.map((comment) => {
           return <CommentCard comment={comment} />;

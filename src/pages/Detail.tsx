@@ -26,7 +26,6 @@ export default function Detail() {
       const payload: string = token.split('.')[1];
       const plainPayload: Token = JSON.parse(atob(payload)) as Token;
       setUserID(plainPayload.id);
-      //window.location.reload();
     }
   }, []);
 

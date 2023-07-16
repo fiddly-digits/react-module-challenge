@@ -89,3 +89,12 @@ export interface PostSubmit {
   postImg: string;
   hashtags: Hashtags;
 }
+
+export interface CommentSubmit {
+  content: string;
+}
+
+export interface CommentSuccess {
+  success: boolean;
+  message?: string;
+}
