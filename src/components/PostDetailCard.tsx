@@ -20,6 +20,7 @@ interface Props {
 }
 
 //FIXME: Fix Blur on button
+//TODO: Logic on Delete Button
 
 export default function PostDetailCard(props: Props) {
   const [LoggedUser, setLoggedUser] = useState<UserResult>();
@@ -89,7 +90,7 @@ export default function PostDetailCard(props: Props) {
           </div>
         </div>
         {props.userLogged === props.content?.postOwner && (
-          <div className='flex justify-end'>
+          <div className='flex justify-end gap-2'>
             <Link
               className='flex items-center gap-3 p-1 rounded hover:bg-indigo-200/30 hover:text-indigo-600'
               to={`/Edit/${props.content?._id ?? 'ID'}`}
@@ -97,6 +98,10 @@ export default function PostDetailCard(props: Props) {
               <i className='text-xl iconoir-edit-pencil' />
               <p className='text-xs'>Edit Post</p>
             </Link>
+            <a className='flex items-center gap-3 p-1 rounded hover:bg-indigo-200/30 hover:text-indigo-600'>
+              <i className='text-xl iconoir-trash' />
+              <p className='text-xs'>Delete Post</p>
+            </a>
           </div>
         )}
         <div className='flex gap-5 text-xl'>
