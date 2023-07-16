@@ -1,4 +1,3 @@
-import Navbar from '../components/Navbar';
 import PostDetailCard from '../components/PostDetailCard';
 import {
   CommentsResult,
@@ -10,8 +9,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import TimeAgo from 'timeago-react';
 import MoreFromItem from '../components/MoreFromItem';
-
-//TODO: Encapsulate token logic on Navbar
 
 export default function Detail() {
   const [userID, setUserID] = useState<string>();
@@ -55,9 +52,6 @@ export default function Detail() {
 
   return (
     <>
-      <header className=' bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] sticky top-0 z-10'>
-        {userID ? <Navbar userID={userID} /> : <Navbar />}
-      </header>
       <div className='container mx-auto'>
         <div className='grid grid-rows-3 gap-4 grid-cols-[repeat(12]'>
           <aside className='hidden mt-32 md:flex md:col-span-1 md:row-span-1 md:col-start-1 md:flex-col md:items-center md:gap-10'>
