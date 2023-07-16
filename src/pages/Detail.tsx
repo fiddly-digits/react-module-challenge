@@ -18,6 +18,7 @@ export default function Detail() {
 
   const { id } = useParams();
 
+  //! This is needed in order to get the current user.
   useEffect(() => {
     const token =
       localStorage.getItem('token') || sessionStorage.getItem('token');

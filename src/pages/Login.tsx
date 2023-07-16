@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { AuthResponse, LoginData } from '../utils/common.types';
 import { useRef, useState } from 'react';
 import LoginError from '../components/LoginError';
-import Navbar from '../components/Navbar';
 
 export default function Login() {
   const [fail, setFail] = useState<string>();

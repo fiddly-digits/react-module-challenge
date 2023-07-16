@@ -2,7 +2,7 @@ import Online from './Online';
 import Offline from './Offline';
 import { Link } from 'react-router-dom';
 import Offcanvas from './OffCanvas';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 interface Props {
   userID?: string;
