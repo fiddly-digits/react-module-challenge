@@ -143,7 +143,10 @@ export default function PostDetailCard(props: Props) {
         </div>
         <div className='flex w-full gap-2 mt-8'>
           <img
-            src={LoggedUser?.data?.picture}
+            src={
+              LoggedUser?.data?.picture ??
+              'https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png'
+            }
             alt='avatar'
             className='w-8 h-8 rounded-full'
           />
@@ -155,7 +158,6 @@ export default function PostDetailCard(props: Props) {
               className='flex flex-col border border-gray-200 rounded grow focus:border-indigo-600 focus:outline-none '
               ref={textAreaContainer}
               onFocus={() => setCommentTextFocused(true)}
-              onBlur={() => setCommentTextFocused(true)}
             >
               <textarea
                 placeholder='Add to the discussion'
@@ -168,7 +170,7 @@ export default function PostDetailCard(props: Props) {
                   }
                 })}
               />
-              {commentTextFocused && (
+              {commentTextFocused && props.userLogged && (
                 <div className='flex items-center justify-between pt-1 text-3xl border-t border-gray-400/50'>
                   <div className='flex items-center gap-2'>
                     <a className='iconoir-bold icons-style'></a>
@@ -193,7 +195,7 @@ export default function PostDetailCard(props: Props) {
                 </div>
               )}
             </div>
-            {commentTextFocused && (
+            {commentTextFocused && props.userLogged && (
               <div>
                 <input
                   type='submit'
