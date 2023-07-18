@@ -4,8 +4,6 @@ interface Props {
   isNew: boolean;
 }
 
-//TODO: Make props receive an object with the data.
-
 export default function HashCardItem(props: Props) {
   return (
     <div className='p-4 border-b-2 group border-neutral-100'>
