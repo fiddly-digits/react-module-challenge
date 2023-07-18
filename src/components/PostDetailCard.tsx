@@ -5,10 +5,11 @@ import {
   User,
   Comment,
   CommentSubmit,
-  CommentSuccess
+  CommentSuccess,
+  DeleteSuccess
 } from '../utils/common.types';
-import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { UserResult } from '../utils/common.types';
 import { useForm } from 'react-hook-form';
 
@@ -19,14 +20,13 @@ interface Props {
   comments?: Comment[];
 }
 
-//FIXME: Fix Blur on button
 //TODO: Logic on Delete Button
+//TODO: Improve Modal Logic
 
 export default function PostDetailCard(props: Props) {
   const [LoggedUser, setLoggedUser] = useState<UserResult>();
-  const textAreaContainer = useRef<HTMLInputElement>(null);
   const [commentTextFocused, setCommentTextFocused] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   const { handleSubmit, register } = useForm<CommentSubmit>();
 
   const { id } = useParams();
@@ -58,7 +58,28 @@ export default function PostDetailCard(props: Props) {
     if (res) {
       location.reload();
     } else {
-      alert('Something goes wrong with your comment');
+      alert('Something went wrong with your comment');
+    }
+  }
+
+  async function onDelete() {
+    const token =
+      localStorage.getItem('token') || sessionStorage.getItem('token');
+    const response: Response = await fetch(
+      `http://localhost:8080/posts/${id ?? 0}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token ?? 0}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    const res: DeleteSuccess = (await response.json()) as DeleteSuccess;
+    if (res) {
+      navigate('/');
+    } else {
+      alert('Error in deletion');
     }
   }
 
@@ -98,10 +119,39 @@ export default function PostDetailCard(props: Props) {
               <i className='text-xl iconoir-edit-pencil' />
               <p className='text-xs'>Edit Post</p>
             </Link>
-            <a className='flex items-center gap-3 p-1 rounded hover:bg-indigo-200/30 hover:text-indigo-600'>
+            <a
+              className='flex items-center gap-3 p-1 rounded hover:bg-indigo-200/30 hover:text-indigo-600'
+              onClick={() => {
+                if (document) {
+                  (
+                    document.getElementById('my_modal_1') as HTMLFormElement
+                  ).showModal();
+                }
+              }}
+            >
               <i className='text-xl iconoir-trash' />
               <p className='text-xs'>Delete Post</p>
             </a>
+            <dialog id='my_modal_1' className='modal'>
+              <form method='dialog' className='bg-white modal-box'>
+                <h3 className='text-lg font-bold'>Caution!</h3>
+                <p className='py-4'>
+                  This action will permanently delete your post, are you sure?
+                </p>
+                <div className='modal-action'>
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className='p-2 font-bold text-white bg-indigo-600 rounded-md'>
+                    Take me back!
+                  </button>
+                  <button
+                    className='p-2 font-bold text-white bg-red-600 rounded-md'
+                    onClick={() => void onDelete()}
+                  >
+                    Yes. Delete It.
+                  </button>
+                </div>
+              </form>
+            </dialog>
           </div>
         )}
         <div className='flex gap-5 text-xl'>
@@ -156,7 +206,6 @@ export default function PostDetailCard(props: Props) {
           >
             <div
               className='flex flex-col border border-gray-200 rounded grow focus:border-indigo-600 focus:outline-none '
-              ref={textAreaContainer}
               onFocus={() => setCommentTextFocused(true)}
             >
               <textarea

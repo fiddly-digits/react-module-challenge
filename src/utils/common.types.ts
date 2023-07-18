@@ -98,3 +98,8 @@ export interface CommentSuccess {
   success: boolean;
   message?: string;
 }
+
+export interface DeleteSuccess {
+  success: boolean;
+  message?: string;
+}

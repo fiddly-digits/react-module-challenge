@@ -221,8 +221,8 @@ export default function Post() {
                     or categories that best describe your post. Add up to four
                     comma-separated tags per post. Combine tags to reach the
                     appropriate subcommunities. Use existing tags whenever
-                    possible. Some tags, such as “help” or “healthydebate”, have
-                    special posting guidelines.
+                    possible. Some tags, such as “help” or “healthy debate”,
+                    have special posting guidelines.
                   </p>
                 </div>
               )}
